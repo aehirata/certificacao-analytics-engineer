@@ -5,11 +5,41 @@ sources:
     schema: raw_adventure_works
     tables:
       - name: address
+        columns:
+          - name: addressid
+            tests:
+              - not_null
+              - unique
       - name: addresstype
+        columns:
+          - name: addresstypeid
+            tests:
+              - not_null
+              - unique
       - name: billofmaterials
+        columns:
+          - name: billofmaterialsid
+            tests:
+              - not_null
+              - unique
       - name: businessentity
+        columns:
+          - name: businessentityid
+            tests:
+              - not_null
+              - unique
       - name: businessentityaddress
+        # tests:
+        #   - dbt_utils.unique_combination_of_columns:
+        #     combination_of_columns:
+        #     - businessentityid
+        #     - addressid
       - name: businessentitycontact
+        # tests:
+        #   - dbt_utils.unique_combination_of_columns:
+        #     combination_of_columns:
+        #     - businessentityid
+        #     - personid
       - name: contacttype
       - name: countryregion
       - name: countryregioncurrency
