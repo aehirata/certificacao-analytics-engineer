@@ -8,10 +8,10 @@ with
         select
             salesorderid
             , revisionnumber
-            , cast(orderdate as timestamp) as orderdate
-            , cast(duedate as timestamp) as duedate
-            , cast(shipdate as timestamp) as shipdate
-            , status
+            , cast(orderdate as date) as orderdate
+            , cast(duedate as date) as duedate
+            , cast(shipdate as date) as shipdate
+            , status as order_status
             , onlineorderflag
             , purchaseordernumber
             , accountnumber
@@ -30,7 +30,7 @@ with
             , cast(totaldue as numeric(38,10)) as totaldue
             , comment
             , rowguid
-            , cast(modifieddate as timestamp) as modifieddate
+            , cast(modifieddate as date) as modifieddate
         from source
     )
 
