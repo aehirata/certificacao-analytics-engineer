@@ -1,17 +1,8 @@
-{{
-    config(
-        materialized='ephemeral'
-    )
-}}
+
 with    
     address as (
         select *
         from {{ ref('stg_adventure_works__address') }}
-    )
-
-    , business_entity_address as (
-        select *
-        from {{ ref('stg_adventure_works__businessentityaddress') }}
     )
 
     , state_province as (
@@ -24,9 +15,9 @@ with
         from {{ ref('stg_adventure_works__countryregion') }}
     )
 
-    , final as (
+    , joined as (
         select
-            business_entity_address.businessentityid
+            address.addressid
             , address.addressline1
             , address.city
             , state_province.name as state_name
@@ -41,5 +32,19 @@ with
         left join country_region using (countryregioncode)
     )
 
+    , generate_sk as (
+        select
+            {{ dbt_utils.generate_surrogate_key(['addressid']) }} as address_pk
+            , addressline1
+            , city
+            , state_name
+            , stateprovincecode
+            , stateprovinceid
+            , country_name
+            , country_code
+        from joined
+
+    )
+
 select *
-from final
+from generate_sk

@@ -16,7 +16,7 @@ with
 
     , product_enriched as (
         select
-            {{ dbt_utils.generate_surrogate_key(['product.productid']) }} as product_key
+            {{ dbt_utils.generate_surrogate_key(['product.productid']) }} as product_pk
             , product.productid
             , product.name as product_name
             , product.productnumber
