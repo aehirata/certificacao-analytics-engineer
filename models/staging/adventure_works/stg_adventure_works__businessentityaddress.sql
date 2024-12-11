@@ -14,16 +14,5 @@ with
         from source
     )
 
-    , generate_sk as (
-        select
-            {{ dbt_utils.generate_surrogate_key(['businessentityid', 'addressid']) }} as businessentity_address_pk
-            , businessentityid
-            , addressid
-            , addresstypeid
-            , rowguid
-            , modifieddate
-    )
-
 select *
 from renamed 
-where businessentityid = '20099'

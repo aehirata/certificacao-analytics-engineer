@@ -15,7 +15,7 @@ with
             , cast(unitprice as numeric(38,10)) as unitprice
             , cast(unitpricediscount as numeric(38,10)) as unitpricediscount
             , rowguid
-            , cast(modifieddate as timestamp) as modifieddate
+            , cast(modifieddate as date) as modifieddate
         from source
     )
 

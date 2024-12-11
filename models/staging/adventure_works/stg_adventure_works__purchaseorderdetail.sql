@@ -6,7 +6,7 @@ with
 
     , renamed as (
         select
-            purchaseorderid
+            "purchaseorderid" as purchaseorderid
             , "purchaseorderdetailid" as purchaseorderdetailid
             , cast("duedate" as timestamp) as duedate
             , "orderqty" as orderqty
