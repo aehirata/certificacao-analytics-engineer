@@ -27,7 +27,6 @@ with
             , country_region.countryregioncode as country_code
             , state_province.territoryid
         from address
-        left join business_entity_address using (addressid)
         left join state_province using (stateprovinceid)
         left join country_region using (countryregioncode)
     )
