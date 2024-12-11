@@ -25,4 +25,4 @@ with
     )
 
 select *
-from revenue
+from generate_sk
