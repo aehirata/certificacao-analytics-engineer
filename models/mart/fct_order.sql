@@ -8,15 +8,15 @@ with
         select
             {{ dbt_utils.generate_surrogate_key(['salesorderid']) }} as salesorder_pk
             , {{ dbt_utils.generate_surrogate_key(['customerid']) }} as customer_pk
-            , {{ dbt_utils.generate_surrogate_key(['salespersonid']) }} salesperson_pk
-            , {{ dbt_utils.generate_surrogate_key(['territoryid']) }} territory_pk
-            , {{ dbt_utils.generate_surrogate_key(['shiptoaddressid']) }} shiptoaddress_pk
-            , {{ dbt_utils.generate_surrogate_key(['creditcardid']) }} creditcard_pk
+            , {{ dbt_utils.generate_surrogate_key(['salespersonid']) }} as salesperson_pk
+            , {{ dbt_utils.generate_surrogate_key(['territoryid']) }} as territory_pk
+            , {{ dbt_utils.generate_surrogate_key(['shiptoaddressid']) }} as shiptoaddress_pk
+            , {{ dbt_utils.generate_surrogate_key(['creditcardid']) }} as creditcard_pk
+            , {{ dbt_utils.generate_surrogate_key(['order_status']) }} as order_status
             , revisionnumber
             , orderdate
             , duedate
             , shipdate
-            , order_status
             , subtotal
             , taxamt
             , freight

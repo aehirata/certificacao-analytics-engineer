@@ -21,7 +21,7 @@ with
 
     , person_customer as (
         select
-            customer.personid as businessentityid
+            customer.customerid
             , person.firstname || ' ' || coalesce(person.middlename, '') || ' ' || person.lastname as customer_name
             , 'Person' as customer_type
         from businessentitycontact
@@ -33,7 +33,7 @@ with
 
     , store_customer as (
         select
-            businessentityid
+            customer.customerid
             , name as customer_name
             , 'Store' as customer_type
         from store
@@ -50,11 +50,12 @@ with
     )
 
     , generate_sk as (
-        select 
-            {{ dbt_utils.generate_surrogate_key(['businessentityid']) }} as customer_pk
-            , customer_name
-            , customer_type
+        select
+            customerid
+            , listagg(customer_name, '; ') within group (order by customer_type) as customer_name
+            , listagg(customer_type, '; ') within group (order by customer_type) as customer_type
         from all_customers
+        group by customerid
     )
 
 select *
