@@ -3,6 +3,9 @@ sources:
   - name: adventure_works
     database: fea24_9
     schema: raw_adventure_works
+    freshness:
+      warn_after: { count: 1, period: day }
+    loaded_at_field: modifieddate
     tables:
       - name: address
         columns:

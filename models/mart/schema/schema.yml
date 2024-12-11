@@ -1,0 +1,152 @@
+version: 2
+models:
+  - name: dim_address
+    description: Address dimension
+    columns:
+      - name: address_pk
+        description: Street address information for customers, employees, and vendors.
+        tests:
+          - unique
+          - not_null
+      - name: addressline1
+        description: First street address line.
+      - name: city
+        description: Name of the city.
+      - name: state_name
+        description: State or province description
+      - name: stateprovincecode
+        description: ISO standard state or province code.
+      - name: stateprovinceid
+        description: Primary key for StateProvince records.
+      - name: country_name
+        description: Country name.
+      - name: country_code
+        description: Country code.
+  - name: dim_credit_card
+    description: Customer credit card information.
+    columns:
+      - name: creditcard_pk
+        description: Primary key for Credit Card records
+        tests:
+          - unique
+          - not_null
+      - name: cardtype
+        description: Credit card name.
+      - name: cardnumber
+        description: Credit card number.
+      - name: expmonth
+        description: Credit card expiration month.
+      - name: expyear
+        description: Credit card expiration year.
+  - name: dim_customer
+    description: Current customer information.
+    columns:
+      - name: customerid
+        description: Primary key for Customer records.
+        tests:
+          - unique
+          - not_null
+      - name: customer_name
+        description: Name of the Customer
+      - name: customer_type
+        description: Type of the Customer (Person; Store)
+  - name: dim_order_detail
+    description: Individual products associated with a specific sales order.
+    columns:
+      - name: salesorder_pk
+        description: Sales Order Primary Key
+        tests:
+          - unique
+          - not_null
+      - name: product_pk
+        description: Product Foreign Key
+      - name: specialoffer_pk
+        description: Special Offer Foreign Key
+      - name: unitprice
+        description: Price per unit.
+      - name: unitpricediscount
+        description: Discount per unit.
+      - name: orderqty
+        description: Order Quantity.
+      - name: revenue
+        description: >
+          Calculate the total amount by taking the unit price of an item, subtracting any discount applied to that unit price, 
+          and then multiplying the resulting price by the quantity of items ordered.
+  - name: dim_order_reason
+    description: Cross-reference table mapping sales orders to sales reason codes.
+    columns:
+      - name: salesreason_pk
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: sales_reason_name
+        description: Sales reason description.
+      - name: sales_reason_type
+        description: Category the sales reason belongs to.
+  - name: dim_order_status
+    description: Order status.
+    columns:
+      - name: order_status_pk
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: order_status_description
+        description: Order status description.
+  - name: dim_product
+    description: Products sold or used in the manufacturing of sold products.
+    columns:
+      - name: product_pk
+        description: Primary key for Product records.
+        tests:
+          - unique
+          - not_null
+      - name: productid
+        description: Product ID
+      - name: product_name
+        description: Name of the product.
+      - name: productnumber
+        description: Unique product identification number.
+      - name: color
+        description: Product color.
+      - name: class
+        description: H = High, M = Medium, L = Low.
+      - name: product_subcategory_name
+        description: Subcategory description.
+      - name: product_category_name
+        description: Category description.
+  - name: fct_order
+    description: General sales order information.
+    columns:
+      - name: salesorder_pk
+        description: Primary key.
+        tests:
+          - unique
+          - not_null
+      - name: customer_pk
+        description: Customer Foreign Key.
+      - name: salesperson_pk
+        description: Salesperson Foreign Key.
+      - name: territory_pk
+        description: Territory Foreign Key.
+      - name: shiptoaddress_pk
+        description: Address Foreign Key.
+      - name: creditcard_pk
+        description: Credit Card Foreign Key.
+      - name: order_status
+        description: Order current status. 1 - In process; 2 - Approved; 3 - Backordered; 4 - Rejected; 5 - Shipped; 6 - Cancelled.
+      - name: orderdate
+        description: Dates the sales order was created.
+      - name: duedate
+        description: Date the order is due to the customer.
+      - name: shipdate
+        description: Date the order is due to the customer.
+      - name: subtotal
+        description: Sales subtotal
+      - name: taxamt
+        description: Tax amount.
+      - name: freight
+        description: Shipping cost.
+      - name: totaldue
+        description: Total due from customer. Computed as Subtotal + TaxAmt + Freight.
