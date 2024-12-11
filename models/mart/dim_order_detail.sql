@@ -12,8 +12,9 @@ with
     )
 
     , generate_sk as (
-        select
-            {{ dbt_utils.generate_surrogate_key(['salesorderdetailid']) }} as salesorderdetail_pk
+        select distinct
+            {{ dbt_utils.generate_surrogate_key(['salesorderdetailid', 'salesorderid']) }} as pk
+            , {{ dbt_utils.generate_surrogate_key(['salesorderdetailid']) }} as salesorderdetail_pk
             , {{ dbt_utils.generate_surrogate_key(['salesorderid']) }} as salesorder_pk
             , {{ dbt_utils.generate_surrogate_key(['productid']) }} as product_pk
             , {{ dbt_utils.generate_surrogate_key(['specialofferid']) }} as specialoffer_pk

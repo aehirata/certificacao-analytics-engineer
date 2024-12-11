@@ -53,11 +53,13 @@ models:
   - name: dim_order_detail
     description: Individual products associated with a specific sales order.
     columns:
-      - name: salesorder_pk
+      - name: pk
         description: Sales Order Primary Key
         tests:
           - unique
           - not_null
+      - name: salesorder_pk
+        description: Sales Order Key
       - name: product_pk
         description: Product Foreign Key
       - name: specialoffer_pk
