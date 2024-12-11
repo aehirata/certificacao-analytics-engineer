@@ -52,11 +52,10 @@ with
     , generate_sk as (
         select
             {{ dbt_utils.generate_surrogate_key(['customerid']) }} as customer_pk
-            , customerid
             , listagg(customer_type, '; ') within group (order by customer_type) as customer_type
             , listagg(customer_name, '; ') within group (order by customer_type) as customer_name
         from all_customers
-        group by customer_pk, customerid
+        group by customer_pk
     )
 
 select *
