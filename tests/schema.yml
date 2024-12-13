@@ -1,0 +1,6 @@
+version: 2
+data_tests:
+  - name: check_gross_sales_from_2011
+    description: >
+      The gross sales values for the year 2011 are R$12,646,112.16.
+      Therefore, any number different from this will result in a failed test.

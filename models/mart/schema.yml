@@ -5,7 +5,7 @@ models:
     columns:
       - name: address_pk
         description: Street address information for customers, employees, and vendors.
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: addressline1
@@ -27,7 +27,7 @@ models:
     columns:
       - name: creditcard_pk
         description: Primary key for Credit Card records
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: cardtype
@@ -43,7 +43,7 @@ models:
     columns:
       - name: customerid
         description: Primary key for Customer records.
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: customer_name
@@ -55,7 +55,7 @@ models:
     columns:
       - name: pk
         description: Sales Order Primary Key
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: salesorder_pk
@@ -79,7 +79,7 @@ models:
     columns:
       - name: salesreason_pk
         description: Primary key
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: sales_reason_name
@@ -91,7 +91,7 @@ models:
     columns:
       - name: order_status_pk
         description: Primary key
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: order_status_description
@@ -101,7 +101,7 @@ models:
     columns:
       - name: product_pk
         description: Primary key for Product records.
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: productid
@@ -123,7 +123,7 @@ models:
     columns:
       - name: salesorder_pk
         description: Primary key.
-        tests:
+        data_tests:
           - unique
           - not_null
       - name: customer_pk
