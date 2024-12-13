@@ -4,8 +4,8 @@ sources:
     database: fea24_9
     schema: raw_adventure_works
     freshness:
-      warn_after: { count: 1, period: day }
-    loaded_at_field: modifieddate
+      warn_after: { count: 18250, period: day }
+    loaded_at_field: cast(modifieddate as timestamp)
     tables:
       - name: address
       - name: businessentitycontact
