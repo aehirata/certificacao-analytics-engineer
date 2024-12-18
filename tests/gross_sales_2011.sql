@@ -7,7 +7,7 @@ with
 
     , sales_order_detail as (
         select *
-        from {{ ref('dim_order_detail') }}
+        from {{ ref('fct_order_detail') }}
     )
 
     , gross_sales_2011 as (
