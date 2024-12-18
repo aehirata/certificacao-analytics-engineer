@@ -41,7 +41,7 @@ models:
   - name: dim_customer
     description: Current customer information.
     columns:
-      - name: customerid
+      - name: customer_pk
         description: Primary key for Customer records.
         data_tests:
           - unique
